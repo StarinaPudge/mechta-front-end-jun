@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>FastService Delivery</title>
+</head>
+<body>
+    <div class="container" id="container"  v-cloak>
+        <div class="cities" @click="noList()">
+            <div class="logo fs-24 fw-700">
+                <img src="images/logo.png" alt="logo">
+                FastService
+            </div>
+            <div class="enter-city">
+                <div class="fs-48 fw-700">Delivery Cost</div>
+                <div class="fs-24 fw-400 op-50 mt-15 mb-80">Enter name of the city to count delivery cost</div>
+                <div class="input" id="input">
+                    <input
+                        class="input-city fs-24 fw-400"
+                        type="text"
+                        v-model="inputCity"
+                        @keyup="textAdded($event)"
+                        @keyup.delete="addOrRemoveWarning(3)"
+                        @keyup.enter.exact="findCity(inputCity)"
+                        placeholder="Enter name of the city"
+                        id="input-city">
+                    <input
+                        class="btn fs-24 fw-700"
+                        type="button"
+                        value="Enter"
+                        @click="findCity(inputCity)"
+                        id="btn-enter">
+                    <input
+                        class="btn-clear hidden fs-24 fw-400"
+                        type="button"
+                        value=" "
+                        @click="clearCity()"
+                        id="btn-clear">
+                    <div class="error hidden fs-20 fw-400" id="error">
+                        We didn’t found such city. Please check spelling.
+                    </div>
+                </div>
+                <div class="list hidden fs-24 fw-400" id="list">
+                    <div class="list-city" v-if="citiesArrSmall[0]" @click="addCity(citiesArrSmall[0])">{{citiesArrSmall[0]}}</div>
+                    <div class="list-city" v-if="citiesArrSmall[1]" @click="addCity(citiesArrSmall[1])">{{citiesArrSmall[1]}}</div>
+                    <div class="list-city" v-if="citiesArrSmall[2]" @click="addCity(citiesArrSmall[2])">{{citiesArrSmall[2]}}</div>
+                    <div class="list-city" v-if="citiesArrSmall[3]" @click="addCity(citiesArrSmall[3])">{{citiesArrSmall[3]}}</div>
+                </div>
+            </div>
+            <div class="fs-24">Most popular cities</div>
+            <div class="popular">
+                <div class="popular-cities-1 fs-20 fw-400 op-50">
+                    <div class="popular-cities-one" @click="addCity('Nur - Sultan')">Nur - Sultan</div>
+                    <div class="popular-cities-one" @click="addCity('Almaty')">Almaty</div>
+                    <div class="popular-cities-one" @click="addCity('Shymkent')">Shymkent</div>
+                    <div class="popular-cities-one" @click="addCity('Atyrau')">Atyrau</div>
+                    <div class="popular-cities-one" @click="addCity('Aktau')">Aktau</div>
+                </div>
+                <div class="popular-cities-2 fs-20 fw-400 op-50">
+                    <div class="popular-cities-one" @click="addCity('Zhana Turmis')">Zhana Turmis</div>
+                    <div class="popular-cities-one" @click="addCity('Karaganda')">Karaganda</div>
+                    <div class="popular-cities-one" @click="addCity('Kentau')">Kentau</div>
+                    <div class="popular-cities-one" @click="addCity('Aitei')">Aitei</div>
+                    <div class="popular-cities-one" @click="addCity('Pavlodar')">Pavlodar</div>
+                </div>
+            </div>
+            <div class="credits">
+                <div class="rights fw-400 op-50">All rights reserved <br> Fast service 2021</div>
+                <div class="payment">
+                    <img src="images/visa.png" alt="visa" class="payment-type">
+                    <img src="images/Mastercard.png" alt="Mastercard" class="payment-type">
+                    <img src="images/Maestro.png" alt="Maestro" class="payment-type">
+                    <img src="images/processing.png" alt="processing" class="payment-type">
+                </div>
+            </div>
+        </div>
+        <div
+        class="delivery"
+        @click="noList()"
+        id="delivery">
+            <img src="images/vag.png" alt="vag" id="img-vag">
+            <div class="del-type hidden" id="type-btn">
+                <div class="type pickup" id="pickup" @click="choosenDel('pickup')">
+                    <div class="info-del">
+                        <div class="fw-700 fs-36 type-name">Pick up</div>
+                        <div class="op-0 fw-400 fs-24 availability" id="pickup-availability">Not availible in that city</div>
+                        <div class="fw-700 fs-50 price" id="price">{{pickUp[1]}}$</div>
+                    </div>
+                    <div class="image-del">
+                        <img src="images/pickup.png" alt="pickup">
+                    </div>
+                    <div class="v hidden" id="v-pickup"></div>
+                </div>
+                <div class="type courier" id="courier" @click="choosenDel('courier')">
+                    <div class="info-del">
+                        <div class="some-class">
+                            <div class="fw-700 fs-36 type-name">Courier</div>
+                            <div class="op-0 fw-400 fs-24 availability" id="courier-availability">Not availible in that city</div>
+                        </div>
+                        <div class="fw-700 fs-50 price" id="price">{{courier[1]}}$</div>
+                    </div>
+                    <div class="image-del">
+                        <img src="images/courier.png" alt="courier">
+                    </div>
+                    <div class="v hidden" id="v-courier"></div>
+                </div>
+                <div class="type post" id="post" @click="choosenDel('post')">
+                    <div class="info-del">
+                        <div class="fw-700 fs-36 type-name">Post</div>
+                        <div class="op-0 fw-400 fs-24 availability" id="post-availability">Not availible in that city</div>
+                        <div class="fw-700 fs-50 price" id="price">{{post[1]}}$</div>
+                    </div>
+                    <div class="image-del">
+                        <img src="images/post.png" alt="post">
+                    </div>
+                    <div class="v hidden" id="v-post"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="script.js"></script>
+</body>
+</html>

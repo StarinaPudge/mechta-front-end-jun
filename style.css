@@ -1,0 +1,275 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+}
+
+/* fonts and other usefull */
+.fs-24 {
+    font-size: 24px;
+}
+
+.fs-20 {
+    font-size: 20px;
+}
+
+.fs-36 {
+    font-size: 36px;
+}
+
+.fs-48 {
+    font-size: 48px;
+}
+
+.fs-50 {
+    font-size: 50px;
+}
+
+.fw-700 {
+    font-weight: 700;
+}
+
+.fw-400 {
+    font-weight: 400;
+}
+
+.op-50 {
+    opacity: 50%;
+}
+
+.op-0 {
+    opacity: 0%;
+}
+
+.mt-15 {
+    margin-top: 15px;
+}
+
+.mb-80 {
+    margin-bottom: 80px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* main */
+.container {
+    font-family: 'Roboto', sans-serif;
+    color: #283044;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+/* left side */
+
+.cities {
+    float: left;
+    padding-left: 16%;
+    padding-right: 7%;
+}
+
+.logo {
+    margin-top: 20px;
+    display:flex;
+    align-items:center;
+}
+
+.enter-city {
+    margin-top: 71px;
+    margin-bottom: 80px;
+}
+
+.input {
+
+    z-index: 1;
+}
+
+.input-city {
+    width: 317px;
+    height: 63px;
+    border-radius: 50px;
+    border: 1px solid #E9F0EB;
+    padding: 0;
+    padding-right: 170px;
+    padding-left: 36px;
+    
+}
+
+.input-city::placeholder {
+    color: #D9E4DC;
+}
+
+input:focus-visible {
+    outline: -webkit-focus-ring-color auto 0px;
+    border: 1px solid #E9F0EB;
+    box-shadow: 0px 0px 20px rgba(120, 161, 187, 0.3);
+    border-radius: 31px;
+}
+
+.btn {
+    width: 170px;
+    height: 63px;
+    border-radius: 50px;
+    border: 0;
+    padding: 0;
+    color: white;
+    cursor:pointer;
+    transition: all .9s ease-out;
+    margin-left: -170px;
+    background: linear-gradient(279.56deg, #65B3E4 15.15%, rgba(120, 161, 187, 0) 171.55%);
+}
+
+.btn-clear {
+    width: 67px;
+    height: 63px;
+    border-radius: 50px;
+    border: 0;
+    padding: 0;
+    color: white;
+    cursor: pointer;
+    margin-left: -67px;
+    transition: all .9s ease-out;
+    background-image: url("images/exit.png"), linear-gradient(279.56deg, #65B3E4 15.15%, rgba(120, 161, 187, 0) 171.55%);
+    background-position-x: center;
+    background-position-y: center;
+    background-repeat: no-repeat;
+}
+
+.list {
+    position: fixed;
+    z-index: 5;
+    border: 1px solid #E9F0EB;
+    border-radius: 0 0 31px 31px;
+    width: 487px;
+    background: #ffffff;
+    -moz-box-shadow: 0px 15px 20px rgba(120, 161, 187, 0.3);
+    -webkit-box-shadow: 0px 15px 20px rgba(120, 161, 187, 0.3);
+    box-shadow: 0px 15px 20px rgba(120, 161, 187, 0.3);
+    padding-left: 36px;
+}
+
+.list-city {
+    border-bottom: 1px solid #E9F0EB;
+    width: 445px;
+    height: 60px;
+    display:flex;
+    align-items:center;
+    cursor: pointer;
+}
+
+.error {
+    margin-top: 15px;
+    color: #FF4757;
+    margin-bottom: -39px;
+}
+
+.popular {
+    display: table;
+    margin-bottom: 106px;
+}
+
+.popular-cities-1 {
+    display: table-cell;
+    padding-top: 42px;
+    padding-right: 75px;
+}
+
+.popular-cities-2 {
+    display: table-cell;
+    padding-top: 42px;
+}
+
+.popular-cities-one {
+    width: 200px;
+    padding-bottom: 9px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #E9F0EB;
+    padding-left: 15px;
+    cursor: pointer;
+}
+
+.credits {
+    display: table;
+}
+
+.rights {
+    display: table-cell;
+    font-size: 14px;
+    padding-right: 190px;
+}
+
+.payment {
+    display: table-cell;
+}
+
+.payment-type {
+    padding-right: 10px;
+}
+
+.price {
+    color: #78A1BB;
+}
+
+/* right side */
+
+.delivery {
+    float: right;
+    background: #F7F7F7;
+    height: 100vh;
+    width: 100%;
+    border-radius: 40px 0 0 40px;
+}
+
+.del-type {
+    margin-top: 132px;
+}
+
+.type {
+    display: flex;
+    margin: auto;
+    width: 523px;
+    height: 224px;
+    border-radius: 22px;
+    background: #ffffff;
+    margin-bottom: 18px;
+    border: 1px solid #E9F0EB;
+    cursor: pointer;
+    padding-left: 35px;
+}
+
+.type:hover {
+    filter: drop-shadow(0px 0px 20px rgba(120, 161, 187, 0.3));
+}
+
+.filter {
+    filter: drop-shadow(0px 0px 20px rgba(120, 161, 187, 0.3));
+}
+
+.info-del {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.type-name {
+    padding-top: 29px;
+}
+
+.availability {
+    padding-bottom: 45px;
+}
+
+.image-del {
+    margin: auto;
+}
+
+.v {
+    height: 224px;
+    width: 72px;
+    border-radius: 0 22px 22px 0;
+    background: url("images/v.png"), linear-gradient(310.04deg, #65B3E4 23.89%, rgba(255, 255, 255, 0) 81.27%);
+    background-position-x: center;
+    background-position-y: center;
+    background-repeat: no-repeat;
+}
